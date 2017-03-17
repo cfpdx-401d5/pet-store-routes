@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import NavBar from '../components/NavBar';
 import PageBody from '../components/PageBody';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 class App extends Component {
   render() {
