@@ -4,7 +4,7 @@ export default function NavBar(props) {
   return (
     <div>
       <button>Home</button>
-      <button>Stores`</button>
+      <button>Stores</button>
     </div>
   );
 }

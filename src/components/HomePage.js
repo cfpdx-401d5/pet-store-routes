@@ -5,7 +5,7 @@ export default function HomePage(props) {
   return (
     <div>
       <h1>Welcome to Pet Stores</h1>
-      <button>Link to Stores</button>
+      <button><Link to='/stores'>Go to Stores</Link></button>
     </div>
   );
 } 
