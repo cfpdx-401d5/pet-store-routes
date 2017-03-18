@@ -1,6 +1,7 @@
 import React from 'react';
 import HomePage from './HomePage';
 import StoreLocations from './StoreLocations';
+import StorePage from './StorePage';
 import { Route } from 'react-router-dom';
 
 
@@ -9,6 +10,8 @@ export default function PageBody(props) {
     <div>
       < Route exact path='/' component={ HomePage } />
       < Route exact path='/stores' component={ StoreLocations } />
+      < Route path='/stores/:store' component={ StorePage }/>
+
     </div>
   );
 }
