@@ -4,12 +4,9 @@ const Schema = mongoose.Schema;
 const schema = new Schema({
   name: {
     type: String,
-    required: true
-  },
-  location: {
-    type: String,
+    enum: ['dog', 'cat', 'bird', 'snake', 'horse'],
     required: true
   }
 });
 
-module.exports = mongoose.model('Store', schema);
+module.exports = mongoose.model('PetType', schema);
