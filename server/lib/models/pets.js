@@ -8,10 +8,12 @@ const schema = new Schema({
         type: String,
         required: true
     },
-    petBreed: {
+    petBreed: [{
+        breedName: {
             type: Schema.Types.ObjectId,
             ref: 'Breed'
-    },
+        }
+    }],
     petAge: {
         type: Number,
         required: true

@@ -25,6 +25,18 @@ breedRouter
             })
             .catch(next);
     })
+    .patch('/edit/:id', bodyParser, (req, res, next) => {
+        return Breed.findByIdAndUpdate(req.params.id)
+            .then(breed => {
+                breed.breedName = req.body.breedName || breed.breedName;
+                breed.requiresSpecialCare = req.body.requiresSpecialCare || breed.requiresSpecialCare;
+                breed.goodWithChildren = req.body.goodWithChildren || breed.goodWithChildren;
+                breed.save();
+                return breed;
+            })
+            .then(breed => res.send(breed))
+            .catch(next);
+    })
     .delete('/:id', (req, res, next) => {
         Breed.findByIdAndRemove(req.params.id)
             .then( () => {

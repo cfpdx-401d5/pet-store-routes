@@ -37,6 +37,19 @@ petsRouter
             })
             .catch(next);
     })
+    .patch('/edit/:id', bodyParser, (req, res, next) => {
+        return Pets.findByIdAndUpdate(req.params.id)
+            .then( pet => {
+                pet.petName = req.body.petName || pet.petName;
+                pet.petBreed = req.body.petBreed || pet.petBreed;
+                pet.petAge = req.body.petAge || pet.petAge;
+                pet.petDescription = req.body.petDescription || pet.petDescription;
+                pet.save();
+                return pet;
+            })
+            .then(pet => res.send(pet))
+            .catch(next);
+    })
     .delete('/:id', (req, res, next) => {
         Pets.findByIdAndRemove(req.params.id)
             .then( () => {

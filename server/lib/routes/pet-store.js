@@ -54,6 +54,19 @@ petStoreRouter
             })
             .catch(next);
     })
+    .patch('/edit/:id', bodyParser, (req, res, next) => {
+        return PetStore.findByIdAndUpdate(req.params.id)
+            .then(petStore => {
+                petStore.name = req.body.name || petStore.name;
+                petStore.location = req.body.location || petStore.location;
+                petStore.petsByBreed = req.body.petsByBreed || petStore.petsByBreed;
+                petStore.petsByName = req.body.petsByName || petStore.petsByName;
+                petStore.save();
+                return petStore;
+            })
+            .then(petStore => res.send(petStore))
+            .catch(next);
+    })
      .delete('/:id', (req, res, next) => {
         PetStore.findByIdAndRemove(req.params.id)
             .then( () => res.send({message: `You have removed ${petStore.name}`}))
