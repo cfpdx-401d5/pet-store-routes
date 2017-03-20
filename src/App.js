@@ -5,6 +5,7 @@ import {
   Link
 } from 'react-router-dom';
 
+import Home from './components/Home';
 import './App.scss';
 
 const App = () => (
@@ -12,22 +13,20 @@ const App = () => (
     <nav>
       <ul>
         <li><Link to='/'>Home</Link></li>
-        {/*<li><Link to='/topics'>Topics</Link></li>*/}
+        <li><Link to='/stores'>Stores</Link></li>
       </ul>
 
       <hr/>
 
-      <Route exact path='/' render={() => <h2>Welcome to the Pet Shoppe</h2>}/>
-      {/*<Route path='/topics' component={Topics}/>*/}
+      <Route exact path='/' component={Home}/>
+      <Route path='/stores' component={Stores}/>
     </nav>
   </Router>
 );
 
-
-
-const Topics = ({ match }) => (
+const Stores = ({ match }) => (
   <div>
-    <h2>Topics</h2>
+    <h2>Stores</h2>
     <ul>
       <li>
         <Link to={`${match.url}/rendering`}>
