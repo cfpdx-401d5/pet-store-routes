@@ -1,3 +1,5 @@
+const fetch = require('node-fetch');
+
 const pets = [
     {
         name: 'Daisy',
@@ -64,24 +66,6 @@ const pets = [
     }
 ];
 
-const stores = [
-    {
-        name: 'Petmart',
-        location: 'Montivilla',
-        pets: [pets[0]._id, pets[3]._id, pets[6]._id]
-    },
-    {
-        name: 'Pets R Us',
-        location: 'Clackamas',
-        pets: [pets[1]._id, pets[4]._id, pets[7]._id]
-    },
-    {
-        name: 'Pets for Everyone',
-        location: 'Laurelhurst',
-        pets: [pets[2]._id, pets[5]._id, pets[8]._id]
-    }
-];
-
 function fetcher(options) {
     const { method, path, body } = options;
     return fetch(`http://localhost:4000${path}`, {
@@ -101,16 +85,43 @@ function fetcher(options) {
     .then(res => res.json());
 }
 
-pets.forEach(pet => {
-    return fetcher( 'POST', '/pets', pet)
-        .then(res => {
-            pet._id = res._id;
-            pet.__v = res.__v;
-        })
-        .catch(err => console.error('err: ', err));
-});
+function loadDB() {
+    const promiseArray = pets.map(pet => {
+        return fetcher({method: 'POST', path: '/pets', body: pet})
+            .then(res => {
+                pet._id = res._id;
+                pet.__v = res.__v;
+            });
+    });
 
-stores.forEach(store => {
-    return fetcher('POST', '/stores', store)
-        .catch(err => console.error('err: ', err));
-});
+    Promise.all(
+        promiseArray
+    )      
+    .then(() => {
+        const stores = [
+            {
+                name: 'Petmart',
+                location: 'Montivilla',
+                pets: [pets[0]._id, pets[3]._id, pets[6]._id]
+            },
+            {
+                name: 'Pets R Us',
+                location: 'Clackamas',
+                pets: [pets[1]._id, pets[4]._id, pets[7]._id]
+            },
+            {
+                name: 'Pets for Everyone',
+                location: 'Laurelhurst',
+                pets: [pets[2]._id, pets[5]._id, pets[8]._id]
+            }
+        ];
+        stores.forEach(store => {
+            console.log('store: ', store);
+            return fetcher({ method: 'POST', path: '/stores', body: store})
+            .catch(err => console.error('err: ', err));
+        });
+    })
+            .catch(err => console.error('err: ', err));
+}
+
+loadDB();
