@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 // Use native Promise for mongoose operations
-mongoose.Promise = global.Promise;
+mongoose.Promise = Promise;
 
 const dbUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/pet-store';
 

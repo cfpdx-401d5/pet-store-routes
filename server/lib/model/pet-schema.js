@@ -17,6 +17,10 @@ const schema = new Schema({
     description: {
         type: String,
         required: true
+    },
+    sold: {
+        type: Boolean,
+        required: true
     }
 });
 
