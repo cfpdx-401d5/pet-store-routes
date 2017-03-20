@@ -10,10 +10,7 @@ const schema = new Schema({
     type: String,
     required: true
   },
-  type: {
-    type: Schema.Types.ObjectId,
-    ref: 'PetType'
-  }
+  type: String
 });
 
 module.exports = mongoose.model('Pet', schema);

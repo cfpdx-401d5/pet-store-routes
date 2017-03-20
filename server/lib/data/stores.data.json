@@ -1,0 +1,16 @@
+[{
+  "name": "Store One",
+  "location": "1111 First Ave"
+},
+{
+  "name": "Store Two",
+  "location": "2222 Second Ave"
+},
+{
+  "name": "Store Three",
+  "location": "3333 Third Ave"
+}]
+
+// storeData.map(store => {
+//   save
+// });

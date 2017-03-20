@@ -1,15 +1,13 @@
 import React from 'react';
-import StorePage from './StorePage';
-import { Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-export default function StoreLocations({ match }) {
-  console.log({match});
+export default function StoreLocations({ match, stores }) {
   return (
     <div>
       <ul>
-        <li><Link to={`${match.url}/storeone`}>Store One</Link></li>
-        <li><Link to={`${match.url}/storetwo`}>Store Two</Link></li>
-        <li><Link to={`${match.url}/storethree`}>Store Three</Link></li>
+        {stores.map(store => {
+          return <li key={store._id} ><Link to={`${match.url}/${store._id}`}>{store.name}</Link></li>;
+        })}
       </ul>
     </div>
   );
