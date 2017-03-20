@@ -26,6 +26,7 @@ class StorePage extends React.Component  {
     })
     .then(store => {
       this.setState({ store });
+      console.log(store)
     });
   }
 
@@ -35,25 +36,31 @@ class StorePage extends React.Component  {
 
   render() {
     const { match } = this.props;
-    return (
-      <div>
-        <div>{match.params.id} STATIC STORE INFO COMPONENT</div>
-        <div>CHANGING INFO PER USER SELECTION
-          <Route exact path={match.url} render={() => 
-            (<div>
-            <Link to={match.url + '/pets/pet1'}>pet one</Link>
-            <Link to={match.url + '/pets/pet2'}>pet two</Link>
-            <Link to={match.url + '/pets/pet3'}>pet three</Link>
-            </div>)
-          }/>
-          <Route path={match.url + '/pets/:pet'} render={() => 
-            (<span>pet 1<Link to={match.url}>back to list of pets</Link></span>)
-          }/>
+    const pets = this.state.store.pets;
+    console.log('pets', pets)
+    if(pets) {
+      return (
+        <div>
+          <div>{match.params.id} STATIC STORE INFO COMPONENT</div>
+          <div>CHANGING INFO PER USER SELECTION
+            <Route exact path={match.url} render={() => 
+              (<ul>
+                {pets.map(pet => {
+                  return <li><Link to={match.url + `/pets/${pet._id}`}>{pet.name}</Link></li>
+                })}
+              </ul>)
+            }/>
+            <Route path={match.url + '/pets/:pet'} render={() => 
+              (<span>pet 1<Link to={match.url}>back to list of pets</Link></span>)
+            }/>
+          </div>
         </div>
-      </div>
-    );
+      );
+    } else {return <div>loading...</div>}
   }
 };
 
 export default StorePage;
 
+
+            
