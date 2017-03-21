@@ -48,20 +48,18 @@ class StorePage extends React.Component  {
             <h3>{store.location}</h3>
           </div>
           <Switch>
-            <Route exact path={match.url} render={() => (
+            <Route exact path={match.url} render={(props) => (
                 <div>
                   <ul>Available Pets:
                     {pets.map(pet => {
                       return <li key={pet._id}><Link to={match.url + `/pets/${pet._id}`}>{pet.name}</Link></li>
                     })}
                   </ul>
-                  <button><Link to={match.url + '/pets/filter'} >Filter By Type</Link></button>
+                  <PetType {...props} store={store}/>
                 </div>
               )
             }/>
-            <Route exact path={match.url + '/pets/filter'} render={props => (
-              <PetType {...props} store={store}/>
-            )}/>
+            
             <Route path={match.url + '/pets/:pet'} render={(props) => (
               <PetPage {...props} pets={pets}/>
             )}/>
