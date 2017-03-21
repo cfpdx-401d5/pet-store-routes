@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom'
 import Home from './pages/Home';
 import Store from './pages/Store';
+import StoreOne from './pages/StoreOne';
 
 
 export default function App () {
@@ -21,6 +22,7 @@ export default function App () {
 
       <Route exact path="/" component={Home}/>
       <Route path="/stores" component={Store}/>
+      <Route path="/stores/store_one" component={StoreOne}/>
     </div>
   </Router>
   )
