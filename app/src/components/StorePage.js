@@ -1,7 +1,9 @@
 import React, { PropTypes } from 'react';
 import 'react-router-dom';
-import { Route, Link } from 'react-router-dom';
+import { Route, Link, Switch } from 'react-router-dom';
 import fetcher from '../helpers/fetcher';
+import PetPage from './PetPage';
+import PetType from './PetType';
 
 class StorePage extends React.Component  {
   constructor(props) {
@@ -26,7 +28,6 @@ class StorePage extends React.Component  {
     })
     .then(store => {
       this.setState({ store });
-      console.log(store)
     });
   }
 
@@ -36,24 +37,35 @@ class StorePage extends React.Component  {
 
   render() {
     const { match } = this.props;
+    const store = this.state.store;
     const pets = this.state.store.pets;
-    console.log('pets', pets)
+    
     if(pets) {
       return (
         <div>
-          <div>{match.params.id} STATIC STORE INFO COMPONENT</div>
-          <div>CHANGING INFO PER USER SELECTION
-            <Route exact path={match.url} render={() => 
-              (<ul>
-                {pets.map(pet => {
-                  return <li><Link to={match.url + `/pets/${pet._id}`}>{pet.name}</Link></li>
-                })}
-              </ul>)
-            }/>
-            <Route path={match.url + '/pets/:pet'} render={() => 
-              (<span>pet 1<Link to={match.url}>back to list of pets</Link></span>)
-            }/>
+          <div>
+            <h1>{store.name}</h1>
+            <h3>{store.location}</h3>
           </div>
+          <Switch>
+            <Route exact path={match.url} render={() => (
+                <div>
+                  <ul>Available Pets:
+                    {pets.map(pet => {
+                      return <li key={pet._id}><Link to={match.url + `/pets/${pet._id}`}>{pet.name}</Link></li>
+                    })}
+                  </ul>
+                  <button><Link to={match.url + '/pets/filter'} >Filter By Type</Link></button>
+                </div>
+              )
+            }/>
+            <Route exact path={match.url + '/pets/filter'} render={props => (
+              <PetType {...props} store={store}/>
+            )}/>
+            <Route path={match.url + '/pets/:pet'} render={(props) => (
+              <PetPage {...props} pets={pets}/>
+            )}/>
+          </Switch>
         </div>
       );
     } else {return <div>loading...</div>}
@@ -62,5 +74,5 @@ class StorePage extends React.Component  {
 
 export default StorePage;
 
-
+//(<div>pet 1<Link to={match.url}>back to list of pets</Link></div>)
             
