@@ -9,32 +9,26 @@ const Stores = ({ match }) => (
     <h2>Stores</h2>
     <ul>
       <li>
-        <Link to={`${match.url}/rendering`}>
-          Rendering with React
+        <Link to={`${match.url}/north-portland`}>
+          North Portland
         </Link>
       </li>
       <li>
-        <Link to={`${match.url}/components`}>
-          Components
+        <Link to={`${match.url}/west-willamette`}>
+          West Willamette
         </Link>
       </li>
       <li>
-        <Link to={`${match.url}/props-v-state`}>
-          Props v. State
+        <Link to={`${match.url}/east-willamette`}>
+          East Willamette
         </Link>
       </li>
     </ul>
 
-    <Route path={`${match.url}/:storeId`} component={Store}/>
     <Route exact path={match.url} render={() => (
-      <h3>Please select a topic.</h3>
+      <h3>Please select a store location.</h3>
     )}/>
   </div>
 );
 
-const Store = ({ match }) => (
-  <div>
-    <h3>{match.params.storeId}</h3>
-  </div>
-);
-export { Stores, Store };
+export default Stores;
