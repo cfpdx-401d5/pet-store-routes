@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
   Route,
@@ -10,20 +10,40 @@ import { Stores } from './components/Stores';
 
 import './App.scss';
 
-const App = () => (
-  <Router>
-    <nav>
-      <ul>
-        <li><Link to='/'>Home</Link></li>
-        <li><Link to='/stores'>Stores</Link></li>
-      </ul>
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      petStores: [{
+        name: 
+        location:
+      }, {
 
-      <hr/>
+      }, {
 
-      <Route exact path='/' component={Home}/>
-      <Route path='/stores' component={Stores}/>
-    </nav>
-  </Router>
-);
+      }]
+    };
+  }
+
+  render() {
+    return (
+      <Router>
+        <nav>
+          <ul>
+            <li><Link to='/'>Home</Link></li>
+            <li><Link to='/stores'>Stores</Link></li>
+          </ul>
+
+          <hr/>
+          
+          <Route exact path='/' component={Home}/>
+          <Route path='/stores' component={Stores}/>
+        </nav>
+
+      </Router>
+    );
+  }
+}
+
 
 export default App;
