@@ -1,5 +1,4 @@
 import React from 'react';
-import fetcher from '../helpers';
 
 export default class StoreList extends React.Component {
     constructor(props) {
@@ -7,7 +6,5 @@ export default class StoreList extends React.Component {
         this.state = {
             stores: []
         };
-    }
-
-        
+    }        
 }
