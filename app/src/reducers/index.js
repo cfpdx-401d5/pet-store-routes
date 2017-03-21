@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux';
 import { itemsHasErrored, itemsIsLoading } from './general';
-import { stores } from './stores';
+import { stores, activeStore } from './stores';
 
 export default combineReducers({
     itemsHasErrored,
     itemsIsLoading,
-    stores
+    stores,
+    activeStore
 });

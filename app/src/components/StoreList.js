@@ -1,15 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { storesFetchData } from '../actions/stores';
+import { Link, Route } from 'react-router-dom';
+import StoreView from './StoreView';
 
 function CreateStoreList(props) {
     const storeArray = props.stores.map(store => {
-        return <li key={store._id}>{store.name}, {store.location}</li>;
+        return <li key={store._id}><Link to={`/stores/${store._id}/pets`}>{store.name}, {store.location}</Link></li>;
     });
     return (
         <div>
             <h1>Our Store Locations</h1>
             <ul>{storeArray}</ul>
+
+            <Route path='/stores/:id/pets' component={StoreView} />
         </div>
     );
 }

@@ -15,9 +15,8 @@ function Root() {
         <Router>
           <div>
             <Route exact path='/' component={App}/>
-            <Route exact path='/stores' component={StoreList}/>
-            <Route exact path='/cart'
-            component={Cart}/>
+            <Route path='/stores' component={StoreList}/>
+            <Route path='/cart' component={Cart}/>
           </div>
         </Router>
       </Provider>

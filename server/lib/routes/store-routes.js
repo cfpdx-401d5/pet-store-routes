@@ -23,11 +23,7 @@ router
         .catch(next);
     })
     .get('/:id/pets', (req, res, next) => {
-        const query = {};
-        if (req.query.type) {
-            query.type = req.query.type;
-        }
-        Store.find(query)
+        Store.findById(req.params.id)
             .populate('pets')
             .then(store => res.send(store))
             .catch(next);
