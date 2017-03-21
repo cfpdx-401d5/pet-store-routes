@@ -9,6 +9,8 @@ import {
 import Home from './components/Home';
 import Stores from './components/Stores';
 import Store from './components/Store';
+import petStores from './_data/pet-stores';
+import pets from './_data/pets';
 
 import './App.scss';
 
@@ -16,32 +18,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      petStores: [
-        {
-          name: 'North Portland',
-          location: '123 N. Williams Ave.'
-        }, {
-          name: 'West Willamette',
-          location: '456 W. Burnside St.'
-        }, {
-          name: 'East Willamette',
-          location: '789 Stark St.'
-        }],
-      pets: [
-        {
-          type: 'Dog', 
-          cost: '$2.00'
-        },
-        {
-          type: 'Cat', 
-          cost: '$1.00'
-        },
-        {
-          type: 'Bird', 
-          cost: '$300.00'
-        },
-
-      ]
+      petStores: petStores,
+      pets: pets
     };
   }
 
@@ -57,6 +35,7 @@ class App extends Component {
           
           <Switch>
             <Route exact path='/' component={Home}/>
+            {/*use render={(props) => <Stores {...props} stores={this.state.stores}/>*/}
             <Route exact path='/stores' component={Stores}/>
             <Route path='/stores/:storeId' component={Store} />
             <Route component={Home}/>
