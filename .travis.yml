@@ -17,3 +17,11 @@ addons:
     packages:
       - g++-4.8
       - mongodb-org-server
+
+install:
+      -cd $TRAVIS_BUILD_DIR/react && npm install
+      -cd $TRAVIS_BUILD_DIR/server && npm install
+
+scripts:
+      -cd $TRAVIS_BUILD_DIR/react && npm test
+      -cd $TRAVIS_BUILD_DIR/server && npm test

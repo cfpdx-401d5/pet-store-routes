@@ -2,6 +2,7 @@ const bodyParser = require('body-parser').json();
 const express = require('express');
 
 const PetStore = require('../models/pet-store');
+const Breed = require('../models/pet-breeds');
 
 const Router = express.Router;
 const petStoreRouter = Router();
@@ -27,20 +28,17 @@ petStoreRouter
     })
     .get('/:id/pets', (req, res, next) => {
         PetStore.findById(req.params.id)
+            .populate('petsByBreed.breedName', 'breedName')
             .then(petStore => {
+                console.log('Pet breed', petStore.petsByBreed.breedName);
                 if(!petStore){
                     res.status(404).send({ error: `Pet Store ID ${req.params.id} does not exist`});
-                }
-                else if(req.query.type) {
-                    petStore.find({petsByBreed: [`${req.query.type}`]})
-                        .then(petBreeds => {
-                            res.send(petBreeds);
-                        })
                 }
                 else {
                     res.send(petStore.petsByName);
                 }
             })
+            .catch(next);
     })
     .post('/', bodyParser, (req, res, next) => {
         new PetStore(req.body).save()
