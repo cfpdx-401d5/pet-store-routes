@@ -36,7 +36,7 @@ class App extends Component {
           <Switch>
             <Route exact path='/' component={Home}/>
             <Route exact path='/stores' render={(props) => <Stores {...props} stores={this.state.petStores}/>} />
-            <Route path='/stores/:storeId/pets' render={(props) => <Store {...props} stores={this.state.petStores} pets={this.state.pets} />} />
+            <Route path='/stores/:storeId' render={(props) => <Store {...props} stores={this.state.petStores} pets={this.state.pets} />} />
             <Route component={Home}/>
           </Switch>
         </nav>

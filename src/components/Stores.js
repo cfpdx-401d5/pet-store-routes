@@ -20,12 +20,12 @@ const Stores = ({ match, stores }) => {
                 </Link>
             </li>
             <li>
-                <Link to={`${match.url}/${westWillamette.id}`}>
+                <Link to={`${match.url}/${westWillamette.id}/pets`}>
                     {westWillamette.name}
                 </Link>
             </li>
             <li>
-                <Link to={`${match.url}/${eastWillamette.id}`}>
+                <Link to={`${match.url}/${eastWillamette.id}/pets`}>
                     {eastWillamette.name}
                 </Link>
             </li>

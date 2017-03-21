@@ -21,8 +21,10 @@ const Store = ({ match, stores, pets }) => {
       <br/>
       <h4>Pets at our store</h4>
       <ul>{animals}</ul>
+      {/*<Route exact path='/stores/:storeId/pets/:petId' />*/}
     </div>
   );
 };
 
 export default Store;
+
