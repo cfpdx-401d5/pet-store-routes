@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { petsFetchData } from '../actions/pets';
-import { Link } from 'react-router-dom';
 
 function PetDetails(props) {
     if (!props.pets) {
@@ -14,7 +13,6 @@ function PetDetails(props) {
             Gender: {props.pets.gender} <br/>
             Category: {props.pets.category} <br/>
             Description: {props.pets.description} <br/>
-            <button><Link to=''>Buy</Link></button>
         </div>
     );
 }

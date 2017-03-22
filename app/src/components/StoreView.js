@@ -3,14 +3,39 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { storesFetchOne } from '../actions/stores';
 
+function CategoryFilter(props) {
+    return (
+        <select onChange={props.filter}>
+            <option value='all'>All</option>
+            <option value='dog'>Dogs</option>
+            <option value='cat'>Cats</option>
+            <option value='amphibian'>Amphibians</option>
+        </select>
+    );
+}
+
 function PetList(props) {
     if (!props.activeStore) {
         return null;
     }
 
-    const petsArray = props.activeStore.pets.map(pet => {
-        return (<li key={pet._id}><Link to={`/stores/${props.activeStore._id}/pets/${pet._id}`}>{pet.name}</Link></li>);
-    });
+    let petsArray = [];
+
+    if (props.view === 'all') {
+        petsArray = props.activeStore.pets.map(pet => {
+            return (
+            <li key={pet._id}><Link to={`/stores/${props.activeStore._id}/pets/${pet._id}`}>{pet.name}</Link></li>
+            );
+        }); 
+    } else {
+        petsArray = props.activeStore.pets.filter(pet => { //eslint-disable-line
+            return (pet.category === props.view);
+        }).map(pet => {
+            return (
+                <li key={pet._id}><Link to={`/stores/${props.activeStore._id}/pets/${pet._id}`}>{pet.name}</Link></li>
+            );
+        });
+    }
 
     return (
         <div>
@@ -22,12 +47,31 @@ function PetList(props) {
 }
 
 class StoreView extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            category: 'all',
+        };
+        this.selectCategory = this.selectCategory.bind(this);
+    }
+
     componentWillMount() {
         this.props.fetchOne({ method: 'GET', path: `/stores/${this.props.match.params.store}/pets` });
     }
+
+    selectCategory(e) {
+        this.setState({
+            category: e.target.value
+        });
+    }
     
     render() {
-        return <PetList activeStore={this.props.activeStore}/>;
+        return (
+            <div>
+                <CategoryFilter filter={this.selectCategory} />
+                <PetList activeStore={this.props.activeStore} view={this.state.category} />
+            </div>
+        );
     }
 }
 
@@ -53,5 +97,10 @@ StoreView.propTypes = {
 };
 
 PetList.propTypes = {
-    activeStore: React.PropTypes.object
+    activeStore: React.PropTypes.object,
+    view: React.PropTypes.string
+};
+
+CategoryFilter.propTypes = {
+    filter: React.PropTypes.func
 };
