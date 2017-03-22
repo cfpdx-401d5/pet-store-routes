@@ -1,17 +1,21 @@
 import React from 'react';
+// import Route from 'react-router-dom';
 
-const PetDetail = (props) => {
-  let petDetails = props.pets.map(x => {
-    return (
-      <article>
-        Pet type: {x.type} <br/>
-        Breed: {x.breed} <br/>
-        Cost: {x.cost} <br/>
-      </article>
-    );
+const PetDetail = ({ match, pets }) => {
+  let urlArrayed = match.url.split('/');
+  let id = urlArrayed[4];
+
+  let petDetail = pets.filter(x => {
+    return (x.id === id);
   });
 
-  return <section>{petDetails}</section>;
+  return (
+    <article>
+        Pet type: {petDetail[0].type} <br/>
+        Breed: {petDetail[0].breed} <br/>
+        Cost: {petDetail[0].cost} <br/>
+    </article>
+  );
 };
 
 export default PetDetail;
