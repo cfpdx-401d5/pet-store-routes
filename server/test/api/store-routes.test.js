@@ -40,7 +40,6 @@ describe('store routes', () => {
     it('GET to /stores/:id/pets returns a list of pets at the store', ()=> {
         return request.get(`/stores/${storeOne._id}/pets`)
             .then(res => {
-                console.log('res.body: ', res.body);
                 assert.isArray(res.body.pets);
             });
     });
