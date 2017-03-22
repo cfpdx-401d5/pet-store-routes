@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { storesFetchData } from '../actions/stores';
-import { Link, Route } from 'react-router-dom';
-import StoreView from './StoreView';
+import { Link } from 'react-router-dom';
 
 function CreateStoreList(props) {
     const storeArray = props.stores.map(store => {
@@ -12,8 +11,6 @@ function CreateStoreList(props) {
         <div>
             <h1>Our Store Locations</h1>
             <ul>{storeArray}</ul>
-
-            <Route path='/stores/:id/pets' component={StoreView} />
         </div>
     );
 }

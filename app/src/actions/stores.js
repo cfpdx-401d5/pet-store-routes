@@ -29,7 +29,6 @@ export function storesFetchData(options) {
 export function storesFetchOne(options) {
     return (dispatch) => {
         dispatch(itemsIsLoading(true));
-
         fetcher(options)
             .then(activeStore => dispatch(storesFetchOneSuccess(activeStore)))
             .then(dispatch(itemsIsLoading(false)))

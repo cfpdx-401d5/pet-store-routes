@@ -1,11 +1,9 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
-import App from './components/App';
-import StoreList from './components/StoreList';
-import Cart from './components/CartList';
+import Navigation from './components/Navigation';
 
 const store = configureStore();
 
@@ -14,9 +12,7 @@ function Root() {
       <Provider store={store}>
         <Router>
           <div>
-            <Route exact path='/' component={App}/>
-            <Route path='/stores' component={StoreList}/>
-            <Route path='/cart' component={Cart}/>
+            <Navigation />
           </div>
         </Router>
       </Provider>
