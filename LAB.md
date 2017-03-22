@@ -20,10 +20,10 @@ Notes:
   * a list of pets at the store, clicking on a pet takes you to that pet:
   * pet detail - the detail for a particular pet
   
-  It also has a filter, a drop down with "All" and then animal types ('cats', 'dogs', 'birds', etc.). 
-  If there is a filter, it should be added as a query parameter to the route
-  
-## Bonus 
+## Bonuses!
+
+Add a client-side filter for the pets view: a drop down with "All" and then animal types ('cats', 'dogs', 'birds', etc.). 
+If there is a filter, it should be added as a query parameter to the route
 
 Create a "Buy" button that adds that pet to a shopping cart. The button should appear both in list of pets as
 well as pet detail. If user clicks buy again, same pet should not be added twice (but not a user error).
@@ -33,8 +33,7 @@ re-use your pet list components (but don't show the buy button here). Clicking o
 back to the `/stores/store_id/pets/pet_id` route (okay if has buy button, but shouldn't duplicate).
 
 ## Rubric *20pts*
-- Routes and nested routes (pet list/pet detail) to spec *6pts*
-- Navigation (moving between routes) *4pts*
-- Query paramters (filter) *3pts*
-- Idomatic use of react router *4pts*
+- Routes and nested routes (pet list/pet detail) to spec *7pts*
+- Navigation (moving between routes) *5pts*
+- Idomatic use of react router *5pts*
 - Idomatic `url`'s *3pts*
