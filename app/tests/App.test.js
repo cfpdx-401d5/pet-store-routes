@@ -2,7 +2,7 @@
 import React from 'react';
 import {shallow, render} from 'enzyme';
 import toJson from 'enzyme-to-json';
-import App from '../src/App';
+import App from '../src/components/App';
 
 describe('Full App', () => {
     it('full app display', () => {

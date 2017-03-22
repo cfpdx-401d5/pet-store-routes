@@ -1,5 +1,12 @@
 exports[`Full App full app display 1`] = `
 <div>
-  <Navigation />
+  <h1>
+    Welcome to Pets R Kewl
+  </h1>
+  <Link
+    replace={false}
+    to="/stores">
+    View Store Locations>
+  </Link>
 </div>
 `;
