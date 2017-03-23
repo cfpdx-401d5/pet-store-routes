@@ -3,7 +3,6 @@ import 'react-router-dom';
 import { Route, Link, Switch } from 'react-router-dom';
 import fetcher from '../helpers/fetcher';
 import PetPage from './PetPage';
-// import PetType from './PetType';
 
 class StorePage extends Component  {
   constructor(props) {
@@ -12,7 +11,7 @@ class StorePage extends Component  {
       filter: 'pet',
       store: {},
       pets: [],
-      filteredPets: this.props.store,
+      filteredPets: [],
     }
     this.doFetch = this.doFetch.bind(this);
   }
@@ -30,12 +29,11 @@ class StorePage extends Component  {
       return res.json();
     })
     .then(store => {
-      store.filteredPets = store.pets;
-      this.setState({ store });
+      this.setState({ store, filteredPets: store.filteredPets });
     });
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.doFetch(this.props.match.params.store);
   }
 
