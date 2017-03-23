@@ -15,6 +15,7 @@ petsRouter
     })
     .get('/:id', (req, res, next) => {
         Pets.findById(req.params.id)
+            .populate('breedName')
             .then(pet => {
                 if(!pet){
                     res.status(404).send({ error: `Pet ID ${req.params.id} does not exist`})

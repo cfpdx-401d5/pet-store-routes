@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link, Route } from 'react-router-dom';
-import Pets from './Pets'
 
 export default class Store extends Component {
     constructor(props){
@@ -29,7 +28,6 @@ export default class Store extends Component {
                         Pets
                     </Link>
                 </div>
-                <Route path={`${this.props.match.url}/pets`} component={Pets}/>
             </div>
         )
     }
