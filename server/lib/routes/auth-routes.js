@@ -37,7 +37,7 @@ router
             .then(token => res.send({token}))
             .catch(next);
     })
-    .post('/signin', bodyParser, hasCredentials, (req, res, next) => {
+    .post('/signin', bodyParser, (req, res, next) => {
         const data = req.body;
         delete req.body;
 
