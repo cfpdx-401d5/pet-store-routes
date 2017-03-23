@@ -34,7 +34,9 @@ router
             .then(user => {
                 token.sign(user);
             })
-            .then(token => res.send({token}))
+            .then(token => {
+                return res.send({token});
+            })
             .catch(next);
     })
     .post('/signin', bodyParser, (req, res, next) => {

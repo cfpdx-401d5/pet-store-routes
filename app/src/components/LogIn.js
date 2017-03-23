@@ -113,6 +113,13 @@ class LogIn extends React.Component {
     }
 }
 
+function mapStateToProps(state) {
+    console.log('state: ', state);
+    return {
+        token: state.userAuth.token
+    }
+}
+
 function mapDispatchToProps(dispatch) {
     return {
         sendLogin: (options) => dispatch(sendLogin(options)),
@@ -120,7 +127,7 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default connect(null, mapDispatchToProps)(LogIn);
+export default connect(mapStateToProps, mapDispatchToProps)(LogIn);
 
 SignIn.propTypes = {
     namechange: React.PropTypes.func,

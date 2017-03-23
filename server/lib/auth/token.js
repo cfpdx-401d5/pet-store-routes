@@ -6,7 +6,8 @@ module.exports = {
         const payload = {
             id: user._id
         };
-        return jwt.signAsync(payload, sekrit);
+        const token = jwt.signAsync(payload, sekrit);
+        return token;
     },
     verify(token) {
         return jwt.verifyAsync(token, sekrit);

@@ -15,6 +15,13 @@ export function userSignupSuccess(user) {
     };
 }
 
+export function setLogin(isLoggedIn) {
+    return {
+        type: 'SET_LOGIN',
+        isLoggedIn
+    };
+}
+
 export function sendLogin(options) {
     return (dispatch) => {
         fetcher(options)
@@ -26,7 +33,9 @@ export function sendLogin(options) {
 export function sendSignUp(options) {
     return (dispatch) => {
         fetcher(options)
-        .then(user => dispatch(userSignupSuccess(user)))
+        .then(user => {
+            dispatch(userSignupSuccess(user));
+        })
         .catch(() => dispatch(itemsHasErrored(true)));
     }; 
 }
