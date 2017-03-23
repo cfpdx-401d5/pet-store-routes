@@ -24,7 +24,6 @@ router
     hasUsernameAndPassword, 
     (req, res, next) => {
       const userInfo = req.body;
-
       User.find({ username: userInfo.username }).count()
         .then(count => {
           // if (count > 0)
@@ -32,14 +31,16 @@ router
           //     code: 400,
           //     error: `username ${userInfo.username} already exists`,
           //   };
-          console.log('here');
           return new User(userInfo).save();
         })
         .then(user => {
           console.log('user', user);
-          token.sign(user);
+          return token.sign(user);
         })
-        .then(token => res.send({ token }))
+        .then(token => {
+          console.log(token);
+          return res.send({ token });
+        })
         .catch(next);
     });
 
