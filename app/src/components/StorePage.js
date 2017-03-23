@@ -1,15 +1,18 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
 import 'react-router-dom';
 import { Route, Link, Switch } from 'react-router-dom';
 import fetcher from '../helpers/fetcher';
 import PetPage from './PetPage';
-import PetType from './PetType';
+// import PetType from './PetType';
 
-class StorePage extends React.Component  {
+class StorePage extends Component  {
   constructor(props) {
     super(props);
     this.state = {
+      filter: 'pet',
       store: {},
+      pets: [],
+      filteredPets: this.props.store,
     }
     this.doFetch = this.doFetch.bind(this);
   }
@@ -27,6 +30,7 @@ class StorePage extends React.Component  {
       return res.json();
     })
     .then(store => {
+      store.filteredPets = store.pets;
       this.setState({ store });
     });
   }
@@ -39,7 +43,7 @@ class StorePage extends React.Component  {
     const { match } = this.props;
     const store = this.state.store;
     const pets = this.state.store.pets;
-    
+    const filteredPets = this.state.filteredPets || this.state.store.pets;
     if(pets) {
       return (
         <div>
@@ -50,18 +54,33 @@ class StorePage extends React.Component  {
           <Switch>
             <Route exact path={match.url} render={(props) => (
                 <div>
-                  <ul>Available Pets:
-                    {pets.map(pet => {
+                <select onChange={e => {       
+                  const filtered = pets.filter(pet => {
+                    if (e.target.value === 'pet') {
+                      return pet; 
+                    } else {
+                      return pet.type===e.target.value;
+                    }
+                  })
+                  this.setState({...this.state, filteredPets: filtered, filter: e.target.value});
+                }}>
+                  <option value='pet'> all pets</option>
+                  {pets.map(pet => {
+                    return <option key={pet._id} value={pet.type}>{pet.type}</option>
+                  })}
+                </select>
+                <div>Available {this.state.filter + 's'}:</div> 
+                  <ul>
+                    {filteredPets.map(pet => {
                       return <li key={pet._id}><Link to={match.url + `/pets/${pet._id}`}>{pet.name}</Link></li>
                     })}
                   </ul>
-                  <PetType {...props} store={store}/>
                 </div>
               )
             }/>
             
             <Route path={match.url + '/pets/:pet'} render={(props) => (
-              <PetPage {...props} pets={pets}/>
+              <PetPage {...props} pets={pets} store={store}/>
             )}/>
           </Switch>
         </div>
@@ -73,4 +92,3 @@ class StorePage extends React.Component  {
 export default StorePage;
 
 //(<div>pet 1<Link to={match.url}>back to list of pets</Link></div>)
-            
