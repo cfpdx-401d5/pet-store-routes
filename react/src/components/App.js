@@ -4,8 +4,6 @@ import { Route } from 'react-router-dom';
 import Home from './Home';
 import Stores from './Stores';
 import Store from './Store';
-import Pets from './Pets';
-import Pet from './Pet';
 
 
 export default class App extends Component {
@@ -25,8 +23,6 @@ export default class App extends Component {
         <Route exact path="/" component={Home}/>
         <Route exact strict path="/stores" component={Stores}/>
         <Route path="/stores/:id" component={Store}/>
-        <Route path="/stores/:id/pets" component={Pets}/>
-        <Route path="/stores/:id/pets/:petId" component={Pet}/>
       </div>
     );
   }

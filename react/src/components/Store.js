@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link, Route } from 'react-router-dom';
+import Pets from './Pets';
+import Pet from './Pet';
 
 export default class Store extends Component {
     constructor(props){
@@ -27,6 +29,8 @@ export default class Store extends Component {
                     <Link to={`${this.props.match.url}/pets`}>
                         Pets
                     </Link>
+                    <Route path="/stores/:id/pets" component={Pets}/>
+                    <Route path="/stores/:id/pets/:petId" component={Pet}/>
                 </div>
             </div>
         )
