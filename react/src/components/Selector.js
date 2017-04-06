@@ -13,6 +13,16 @@ export default function Selector(props) {
             handle: '/stores',
             name: 'Stores',
             id: 2
+        },
+        {
+            handle: '/signup',
+            name: 'Signup',
+            id: 3
+        },
+        {
+            handle: '/signin',
+            name: 'Signin',
+            id: 4
         }
     ];
 

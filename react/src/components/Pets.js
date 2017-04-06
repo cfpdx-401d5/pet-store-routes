@@ -12,18 +12,29 @@ export default class Pets extends Component {
     }
 
     componentWillMount() {
-        fetch('http://localhost:8000/pets')
-            .then(res => res.json())
-            .then(pets => {
-                this.setState({ pets });
-                this.setState({ isLoading: false });
-                // console.log(this.state.pets);
+        if (localStorage) {
+            const token = localStorage.getItem('token');
+                
+            fetch('http://localhost:8000/pets', {
+                method: 'GET',
+                headers: {
+                    'Authorization': token
+                }
             })
+                .then(res => res.json())
+                .then(pets => {
+                    this.setState({ pets });
+                    this.setState({ isLoading: false });
+                    // console.log(this.state.pets);
+                });
+        }
+        else console.log('You are not logged in');
     }
 
     render(){
-        if(!this.state.isLoading){
-        return(
+        if (!this.state.isLoading){
+            console.log(this.state.pets);
+        return (
             <div>
                 <ul>
                     {this.state.pets.map(p => {
@@ -39,8 +50,10 @@ export default class Pets extends Component {
                 </ul>
             </div>
         )}
-        else return(
-            <h1>Loading...</h1>
-        )
+        else {
+            return (
+                <h1>Loading...</h1>
+            )
+        }
     }
 }
