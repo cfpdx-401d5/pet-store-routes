@@ -14,5 +14,8 @@ export default function fetcher(options) {
         }
         return res;
     })
-    .then(res => res.json());
+    .then(res => {
+        return res.json();
+    });
+    
 }
