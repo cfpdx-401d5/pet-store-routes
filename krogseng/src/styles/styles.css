@@ -1,0 +1,31 @@
+body  {
+font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+color: #722626;
+}
+
+.outermost {
+    margin: auto;
+    padding: 3em;
+    width: 100%;
+    min-height: 400px;
+    text-align: left;
+    background-color: #f8ea71;
+}
+
+.navbar  {
+   background-color: #000;
+}
+
+.navlink  {
+    color: #fff;
+    background-color: #000;
+    text-align: left;
+    display: inline-block;
+    padding: 3em;
+}
+
+.address {
+    margin: .5em;
+    padding: .5em;
+    text-align: left;
+}
