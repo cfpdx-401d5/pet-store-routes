@@ -1,0 +1,47 @@
+[
+{
+  "store": "58ccae2b8e42f5ec800a92d5",
+  "name": "Stu",
+  "type": "dog"
+},
+{
+  "store": "58ccae2b8e42f5ec800a92d5",
+  "name": "Sally",
+  "type": "cat"
+},
+{
+  "store": "58ccae2b8e42f5ec800a92d5",
+  "name": "Sam",
+  "type": "bird"
+},
+{
+  "store": "58ccae3d8e42f5ec800a92d6",
+  "name": "Spaghetti",
+  "type": "dog"
+},
+{
+  "store": "58ccae3d8e42f5ec800a92d6",
+  "name": "Linguini",
+  "type": "cat"
+},
+{
+  "store": "58ccae3d8e42f5ec800a92d6",
+  "name": "Ed",
+  "type": "bird"
+},
+{
+  "store": "58ccae4a8e42f5ec800a92d7",
+  "name": "Andi",
+  "type": "cat"
+},
+{
+  "store": "58ccae4a8e42f5ec800a92d7",
+  "name": "Coolio",
+  "type": "horse"
+},
+{
+  "store": "58ccae4a8e42f5ec800a92d7",
+  "name": "Cinnamon",
+  "type": "snake"
+}
+]
