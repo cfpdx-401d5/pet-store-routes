@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 function Home() {
   return (
     <div>
-      <h1>Petz Emporium</h1>
-      <Link to="/stores">List of Stores</Link>
+      <h1> Welcome to BoZen's Petz Emporium </h1>
+      <Link to="/stores"> Petz Store Locations </Link>
     </div>
   );
 };
