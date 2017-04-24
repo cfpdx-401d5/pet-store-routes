@@ -1,101 +1,46 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
+
+
 import Home from '../components/Home';
 import Stores from '../components/Stores';
 import Store from '../components/Store';
-import { Route } from 'react-router-dom';
+import petzStores from '../data/petz-stores';
+import petz from '../data/petz';
+
+// import './App.css';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      
-      stores: [
-        {
-          id: 1,
-          storeName: 'BoZen Petz',
-          storeLocation: 'Beaverton',
-          petSpecialty: 'dogs',
-          pets: [
-            {
-              petId: 1,
-              storeId: 1,
-              type: 'dog',
-              breed: 'cattle dog',
-              gender: 'male',
-            },
-            {
-              petId: 2,
-              storeId: 1,
-              type: 'dog',
-              breed: 'corgi',
-              gender: 'female',
-            }
-          ]
-        },
-        {
-          id: 2,
-          storeName: 'Featherz Petz',
-          storeLocation: 'Tigard',
-          petSpecialty: 'birds',
-          pets: [
-            {
-              petId: 3,
-              storeId: 2,
-              type: 'bird',
-              breed: 'african grey parrot',
-              gender: 'male',
-            },
-                      {
-              petId: 4,
-              storeId: 2,
-              type: 'bird',
-              breed: 'blue macaw',
-              gender: 'male',
-            }
-          ]
-        },
-        {
-          id: 3,
-          storeName: 'Tiger Petz',
-          storeLocation: 'Lake Oswego',
-          petSpecialty: 'cats',
-          pets: [
-            {
-              petId: 5,
-              storeId: 3,
-              type: 'cat',
-              breed: 'burmese cat',
-              gender: 'female',
-            },
-            {
-              petId: 6,
-              storeId: 3,
-              type: 'cat',
-              breed: 'manx cat',
-              gender: 'male',
-            }
-          ]
-        }
-      ]
-      
-    }
+    this.state = {      
+      petzStores: petzStores,
+      petz: petz
+    };
   }
+
   render() {
     return (
+      <Router>
       <div>
 
-        <Route exact path='/' component={Home} />
+        <ul>
+          <li> <Link to='/'> Petz Home </Link> </li>
+          <li> <Link to='/stores'> Petz Stores </Link> </li>
+        </ul>
 
-        <Route exact path='/stores' render={(props) => (
-          <Stores { ...props } 
-            stores={this.state.stores}
-          />
-        )} 
-        />
-
-        <Route path='/stores/:id' component={Store} />
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route exact path='/stores' render={(props) => <Stores { ...props } stores={this.state.petzStores} />} />
+          <Route path='/stores/:storeId' render={(props) => <Store { ...props } stores={this.state.petzStores} petz={this.state.petz} />} />
+          <Route component={Home} />
+        </Switch>
 
       </div>
+      </Router>
     );
   }
 }
